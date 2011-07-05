@@ -77,7 +77,6 @@ while test $# != 0; do
     -x|--e|--ex|--ext|--extc|--extcm|--extcmd)
         diff_tool=$2
         shift
-        echo "$diff_tool"
         ;;
     --)
         path_sep=1
@@ -225,7 +224,8 @@ if [ -n "$diff_tool" ]; then
     export BASE
     eval $diff_tool '"$LOCAL"' '"$REMOTE"'
 else
-    run_merge_tool "$merge_tool" false
+#    run_merge_tool "$merge_tool" false
+    eval $merge_tool '"$LOCAL"' '"$REMOTE"'
 fi
 
 # This function is called on exit
